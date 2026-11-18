@@ -1,365 +1,718 @@
+
 <div align="center">
 
-# Coco Care
+# 🥥 Coco Care
 
-### Smart Coconut Farming.
+### Smart Coconut Farming, Powered by AI
 
-**Detect disease early. Get CRI-grounded advice. Protect every tree.**
+**Detect diseases early. Get research-grounded advice. Protect every tree.**
 
-[![Live Demo](https://img.shields.io/badge/Live-d2qjqi3wenjlo5.cloudfront.net-22c55e?logo=aws)](https://d2qjqi3wenjlo5.cloudfront.net)
-[![React](https://img.shields.io/badge/React-18-61dafb?logo=react)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-6-646cff?logo=vite)](https://vitejs.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?logo=typescript)](https://www.typescriptlang.org/)
-[![Express](https://img.shields.io/badge/Express-4-black?logo=express)](https://expressjs.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16%20%2B%20pgvector-4169e1?logo=postgresql)](https://www.postgresql.org/)
-[![Groq](https://img.shields.io/badge/Groq-LLM-orange)](https://groq.com/)
-[![Azure](https://img.shields.io/badge/Azure-Custom%20Vision-0078d4?logo=microsoftazure)](https://azure.microsoft.com/en-us/products/ai-services/ai-custom-vision)
+An AI-powered coconut health platform combining intelligent disease diagnosis, agricultural knowledge retrieval, and real-time farm monitoring.
 
-**[Try it live →](https://d2qjqi3wenjlo5.cloudfront.net)**
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_App-16a34a?style=for-the-badge&logo=amazonaws&logoColor=white)](https://d2qjqi3wenjlo5.cloudfront.net)
+[![React](https://img.shields.io/badge/React-18-149eca?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL%20%2B%20pgvector-4169e1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![RAG](https://img.shields.io/badge/AI-RAG_Powered-7c3aed?style=for-the-badge)](#rag-knowledge-base)
+
+**[Live Application](https://d2qjqi3wenjlo5.cloudfront.net)** · **[Source Code](https://github.com/pathumsanjaya/Coco-care)** · **[Report an Issue](https://github.com/pathumsanjaya/Coco-care/issues)**
 
 </div>
 
 ---
 
-## Links
+## 🌱 Overview
 
-| | |
-|---|---|
-| Live app | <https://d2qjqi3wenjlo5.cloudfront.net> |
-| Repository | <https://github.com/itspsb2/Coco-care> |
+**Coco Care** is an AI-powered agricultural platform designed to help coconut farmers identify plant diseases, receive reliable guidance, and collaborate with agricultural officers.
 
----
+Traditional disease identification can be time-consuming and dependent on expert availability. Coco Care brings together **computer vision, retrieval-augmented generation (RAG), symptom analysis, and geographic monitoring** in one integrated platform.
 
-## Table of Contents
+The system supports three primary user roles:
 
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [Live Demo Flows](#live-demo-flows)
-- [Architecture](#architecture)
-- [Tech Stack](#tech-stack)
-- [Quick Start](#quick-start)
-- [Environment Variables](#environment-variables)
-- [Project Structure](#project-structure)
-- [Available Scripts](#available-scripts)
-- [Demo Accounts](#demo-accounts)
-- [RAG Knowledge Base](#rag-knowledge-base)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
+| User | Experience |
+|------|------------|
+| 👨‍🌾 **Farmer** | Diagnose diseases, consult the AI assistant, monitor farm conditions, and track reports |
+| 👨‍🔬 **Agricultural Officer** | Review diagnoses, verify disease reports, provide recommendations, and issue nearby alerts |
+| 🛡️ **Administrator** | Manage users, farms, disease reports, notifications, and system operations |
+
+The platform aims to make agricultural support more accessible, timely, and data-informed.
 
 ---
 
-## Overview
+## 🚀 Live Demo
 
-**Coco Care** is an AI-powered platform that helps coconut farmers detect diseases early, get expert-grounded advice, and connect with agricultural officers.
+**Experience Coco Care:**
 
-It combines computer-vision leaf diagnosis, symptom questionnaires for stem / bud / fruit issues, a Retrieval-Augmented-Generation (RAG) chatbot trained on real Coconut Research Institute (CRI) manuals, live weather, and a regional disease heatmap — all wrapped in role-based dashboards for **farmers, officers, and admins**.
+### **[→ Launch Coco Care](https://d2qjqi3wenjlo5.cloudfront.net)**
 
-The product blends three experiences:
+Explore the platform through its three role-based experiences.
 
-1. **Farmer workspace** — diagnose plants, chat with the CRI-grounded assistant, track reports, and watch local weather + outbreak maps.
-2. **Officer review** — verify farmer submissions, add advice, and trigger nearby disease alerts.
-3. **Admin console** — manage users, farms, reports, broadcasts, and system health.
+| Dashboard | What to explore |
+|-----------|-----------------|
+| **Farmer** | Leaf diagnosis, symptom questionnaires, AI chatbot, weather, disease map |
+| **Officer** | Submitted reports, diagnosis verification, agricultural advice, outbreak alerts |
+| **Admin** | User management, farms, reports, notifications, system health |
+
+> **Note:** AI predictions and generated advice are intended to support agricultural decision-making, not replace qualified professional diagnosis.
+
+<!--
+PROJECT SHOWCASE
+
+For the best visual presentation, add real application screenshots
+to a docs/screenshots/ directory and include them here.
+
+Recommended screenshots:
+- Farmer dashboard
+- AI leaf disease diagnosis
+- RAG chatbot with citations
+- Disease heatmap
+- Officer verification dashboard
+
+Do not publish screenshots containing real personal or farm data.
+-->
 
 ---
 
-## Key Features
+## ✨ Key Features
 
-- **AI disease diagnosis** — Upload a leaf photo for Azure Custom Vision classification, or describe symptoms via guided questionnaires (stem, bud, fruit, general).
-- **Fusion engine** — Combines image + symptom confidence; high-agreement results can auto-verify, otherwise reports go to officers for review.
-- **Grounded AI chatbot** — Gemini embeddings + pgvector retrieval + Groq generation, answering only from CRI advisory circulars with source citations.
-- **Disease heatmap** — Interactive Leaflet map of verified / suspected outbreaks across regions.
-- **Weather forecast** — Location-based OpenWeatherMap forecasts for farm planning.
-- **Report & review workflow** — Farmers submit diagnoses; officers verify and advise; nearby farmers get radius-based alerts.
-- **Role-based access** — Separate apps for Farmer (`/app`), Officer (`/officer`), and Admin (`/admin`).
-- **Admin console** — Users, farms, reports, notification broadcasts, and health checks.
-- **Image storage** — AWS S3 when configured; data-URL fallback for local demos.
+### 1. 🔬 AI-Powered Disease Diagnosis
+
+Identify potential coconut diseases through two complementary methods.
+
+- Upload coconut leaf images for classification using **Azure Custom Vision**.
+- Answer guided symptom questionnaires for stem, bud, fruit, and general conditions.
+- Combine visual and symptom evidence through a confidence-based fusion engine.
+- Route diagnoses requiring human evaluation to agricultural officers.
+
+**Benefit:** Helps farmers identify potential problems earlier and request expert review when needed.
+
+### 2. 🤖 CRI-Grounded AI Assistant
+
+Ask agricultural questions through a chatbot powered by **Retrieval-Augmented Generation (RAG)**.
+
+- Retrieves relevant information from Coconut Research Institute (CRI) advisory materials.
+- Generates contextual answers using Groq-hosted language models.
+- Uses Gemini embeddings and PostgreSQL with pgvector for semantic retrieval.
+- Provides references to retrieved source material.
+
+**Benefit:** Makes agricultural reference information easier to access and understand.
+
+### 3. 🗺️ Regional Disease Heatmap
+
+Visualize disease activity through an interactive geographic interface.
+
+- Displays reported and verified outbreaks.
+- Uses **Leaflet** for interactive map visualization.
+- Helps identify areas experiencing disease activity.
+- Supports geographically informed monitoring.
+
+**Benefit:** Helps farmers and officers understand disease patterns across regions.
+
+### 4. 🌦️ Location-Based Weather Forecasts
+
+Access weather information relevant to agricultural planning.
+
+- Integrates **OpenWeatherMap** forecasts.
+- Displays location-specific weather conditions.
+- Provides weather context directly within the farmer dashboard.
+
+**Benefit:** Supports better scheduling of farm activities.
+
+### 5. 👨‍🔬 Agricultural Officer Verification
+
+Connect farmers with agricultural officers through a structured review process.
+
+- Farmers submit disease reports.
+- Officers review diagnosis results and symptoms.
+- Officers verify reports and provide advice.
+- Verified cases can trigger alerts to nearby farmers.
+
+**Benefit:** Combines automated analysis with human expertise.
+
+### 6. 🔐 Role-Based Dashboards
+
+Separate interfaces for different responsibilities.
+
+| Role | Route |
+|------|-------|
+| Farmer | `/app` |
+| Agricultural Officer | `/officer` |
+| Administrator | `/admin` |
+
+The backend uses JWT authentication, password hashing, request validation, and role-based middleware.
+
+### 7. 📢 Monitoring and Notifications
+
+Support disease awareness through reporting and notification workflows.
+
+- Track submitted diagnosis reports.
+- Maintain report verification states.
+- Generate nearby disease alerts using configurable geographic radius rules.
+- Manage notification broadcasts from the administration interface.
 
 ---
 
-## Live Demo Flows
+## 🧭 Application Workflow
 
 ```mermaid
 flowchart TD
-    A[Open Coco Care] --> B{Sign in as}
+    A[Open Coco Care] --> B{User Role}
+
     B -->|Farmer| C[Farmer Dashboard]
-    B -->|Officer| D[Report Review]
+    B -->|Officer| D[Officer Dashboard]
     B -->|Admin| E[Admin Console]
 
-    C --> F{Choose tool}
-    F -->|Leaf photo| G[Azure Custom Vision]
-    F -->|Stem / Bud / Fruit| H[Symptom questionnaire]
-    F -->|Chatbot| I[RAG: Gemini retrieve → Groq answer]
-    F -->|Heatmap| J[Regional outbreak map]
-    F -->|Weather| K[OpenWeather forecast]
+    C --> F{Select Feature}
 
-    G --> L[Fusion + disease report]
+    F -->|Leaf Image| G[Azure Custom Vision]
+    F -->|Symptoms| H[Guided Questionnaire]
+    F -->|Ask AI| I[CRI Knowledge RAG]
+    F -->|Disease Map| J[Outbreak Visualization]
+    F -->|Weather| K[Weather Forecast]
+
+    G --> L[Diagnosis Fusion Engine]
     H --> L
-    L --> M{Confidence / agreement}
-    M -->|High| N[Verified report]
-    M -->|Needs review| O[Pending → Officer]
+
+    L --> M{Confidence Evaluation}
+
+    M -->|High Agreement| N[Auto-Verified Report]
+    M -->|Needs Review| O[Pending Officer Review]
 
     O --> D
-    D --> P[Verify + advise]
-    P --> Q[Nearby farmer alerts]
+    D --> P[Verify and Recommend]
+    P --> Q[Nearby Farmer Alerts]
 
-    E --> R[Users / Farms / Reports / Broadcasts]
+    E --> R[Manage Users, Farms and Reports]
 ```
+
+The diagnostic workflow combines automated classification, symptom analysis, and officer verification.
 
 ---
 
-## Architecture
+## 🏗️ System Architecture
 
-Coco Care is a modular monolith: a Vite React SPA talks to an Express REST API over JWT. Long-running AI work (vision, embeddings, LLM) lives in backend services. PostgreSQL + pgvector stores users, farms, reports, chat history, and the CRI knowledge base.
+Coco Care follows a **modular monolithic architecture**, separating frontend presentation, API routing, business logic, data access, and external AI integrations.
 
 ```mermaid
-flowchart LR
-    subgraph Client[React 18 + Vite]
-      U[User] --> UI[Tailwind + shadcn/ui + MUI]
-      UI --> RQ[TanStack Query + Axios]
+flowchart TB
+    subgraph Frontend["Frontend — React + Vite"]
+        UI[Farmer / Officer / Admin]
+        Client[TanStack Query + Axios]
+        UI --> Client
     end
 
-    subgraph API[Express Backend]
-      RQ --> Auth[JWT Auth]
-      Auth --> R[Routes]
-      R --> C[Controllers]
-      C --> S[Services]
-      S --> Repo[Repositories]
-      Repo --> DB[(PostgreSQL + pgvector)]
+    subgraph Backend["Backend — Node.js + Express"]
+        Auth[JWT Authentication]
+        Routes[REST API Routes]
+        Controllers[Controllers]
+        Services[Business Logic & AI Services]
+        Repos[Data Repositories]
+
+        Auth --> Routes
+        Routes --> Controllers
+        Controllers --> Services
+        Services --> Repos
     end
 
-    subgraph External[External Services]
-      S --> Azure[Azure Custom Vision]
-      S --> Gemini[Gemini Embeddings]
-      S --> Groq[Groq LLM]
-      S --> OWM[OpenWeatherMap]
-      S --> S3[AWS S3]
+    subgraph Database["Data Layer"]
+        PG[(PostgreSQL 16)]
+        Vector[(pgvector Knowledge Store)]
     end
+
+    subgraph External["External Services"]
+        Azure[Azure Custom Vision]
+        Gemini[Gemini Embeddings]
+        Groq[Groq LLM]
+        Weather[OpenWeatherMap]
+        S3[AWS S3 - Optional]
+    end
+
+    Client --> Auth
+    Repos --> PG
+    Repos --> Vector
+
+    Services --> Azure
+    Services --> Gemini
+    Services --> Groq
+    Services --> Weather
+    Services --> S3
 ```
 
-**Request path:** `routes → controller → service → repository`
+### Backend Design
+
+The application follows a layered request-processing pattern:
+
+```text
+HTTP Request
+     │
+     ▼
+   Routes
+     │
+     ▼
+ Controllers
+     │
+     ▼
+  Services
+     │
+     ▼
+ Repositories
+     │
+     ▼
+ PostgreSQL / pgvector
+```
+
+This separation organizes API handling, application logic, database operations, and external service integrations.
+
+### Core Engineering Concepts
+
+- Modular backend design
+- RESTful API development
+- JWT authentication and role-based authorization
+- Relational database design
+- Vector similarity search
+- AI service orchestration
+- Automated API testing
+- Confidence-based diagnosis workflows
+- Geographic disease monitoring
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-| Layer | Technology |
-|-------|------------|
-| Frontend | React 18, Vite 6, TypeScript, React Router 7 |
-| Styling | Tailwind CSS v4, shadcn/ui, Radix, MUI |
-| Data / maps | TanStack Query, Axios, Leaflet, Recharts, Motion |
-| Backend | Node.js 20+, Express 4, TypeScript |
-| Database | PostgreSQL 16 + pgvector (Docker Compose) |
-| Auth | JWT + bcrypt, Zod validation |
-| Vision | Azure Custom Vision (leaf disease ML) |
-| RAG | Gemini embeddings → pgvector → Groq (`llama-3.3-70b-versatile`) |
-| Weather | OpenWeatherMap |
-| Storage | AWS S3 (optional) |
-| Deployment | CloudFront frontend · API + Postgres for backend |
+| Layer | Technologies |
+|-------|--------------|
+| **Frontend** | React 18, TypeScript, Vite 6, React Router 7 |
+| **UI & Styling** | Tailwind CSS v4, shadcn/ui, Radix UI, Material UI |
+| **State & HTTP** | TanStack Query, Axios |
+| **Visualization** | Leaflet, Recharts, Motion |
+| **Backend** | Node.js 20+, Express 4, TypeScript |
+| **Database** | PostgreSQL 16, pgvector |
+| **Authentication** | JWT, bcrypt, Zod |
+| **Computer Vision** | Azure Custom Vision |
+| **Embeddings** | Google Gemini |
+| **LLM Inference** | Groq |
+| **Weather API** | OpenWeatherMap |
+| **Object Storage** | AWS S3 (optional) |
+| **Testing** | Jest, Supertest |
+| **Infrastructure** | Docker Compose, AWS CloudFront |
+
+### AI Pipeline
+
+**Gemini Embeddings → PostgreSQL/pgvector → Groq LLM**
+
+The configured Groq model in the project documentation is `llama-3.3-70b-versatile`.
 
 ---
 
-## Quick Start
+## ⚡ Quick Start
+
+Follow these instructions to run Coco Care locally.
 
 ### Prerequisites
 
-- Node.js ≥ 20
-- npm ≥ 10
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (PostgreSQL + pgvector)
-- API keys for Gemini, Groq, Azure Custom Vision, and OpenWeatherMap *(see env table)*
-- *(optional)* AWS S3 credentials for image uploads
+Ensure that the following are installed:
 
-### 1. Backend
+- **Node.js 20+**
+- **npm 10+**
+- **Docker Engine / Docker Desktop** with Docker Compose
+- Git
 
-```bash
-git clone https://github.com/itspsb2/Coco-care.git
-cd Coco-care/backend
+You will also need the applicable API credentials:
 
-npm install
-cp .env.example .env          # add your API keys
+- Google Gemini
+- Groq
+- Azure Custom Vision
+- OpenWeatherMap
+- AWS S3 (optional)
 
-npm run db:up                 # start PostgreSQL + pgvector on :5433
-npm run db:migrate            # apply schema
-npm run db:seed               # users, farm, CRI knowledge, demo reports
-npm run dev                   # http://localhost:3000
-```
-
-### 2. Frontend
+### 1. Clone the Repository
 
 ```bash
-cd Coco-care/front_end
+git clone https://github.com/pathumsanjaya/Coco-care.git
+cd Coco-care
+```
+
+### 2. Configure the Backend
+
+Open a terminal in the repository root.
+
+```bash
+cd backend
 
 npm install
-cp .env.example .env          # set VITE_API_BASE_URL=http://localhost:3000
 
-npm run dev                   # http://127.0.0.1:5173
+cp .env.example .env
 ```
 
-- Frontend: <http://127.0.0.1:5173>
-- API: <http://localhost:3000>
-- Live demo: <https://d2qjqi3wenjlo5.cloudfront.net>
+Edit `.env` with your database configuration, JWT secret, and required API credentials.
 
----
+> Never commit `.env` files or production credentials to Git.
 
-## Environment Variables
+### 3. Start the Database
 
-### Backend (`backend/.env`)
-
-| Variable | Purpose |
-|----------|---------|
-| `PORT` | HTTP port (default `3000`) |
-| `DATABASE_URL` | Postgres connection string (`…@localhost:5433/cococare`) |
-| `JWT_SECRET` / `JWT_EXPIRES_IN` | Auth token signing |
-| `FRONTEND_ORIGINS` | CORS allowlist for the Vite app |
-| `FUSION_CONFIDENCE_THRESHOLD` | Auto-verify threshold (default `0.75`) |
-| `AZURE_CV_ENDPOINT` / `AZURE_CV_KEY` / `AZURE_CV_PREDICTION_URL` | Leaf disease vision model |
-| `GEMINI_API_KEY` | Required for RAG embeddings + ingest |
-| `GEMINI_EMBEDDING_MODEL` / `GEMINI_EMBEDDING_DIMENSIONS` | Embedding model config |
-| `RAG_TOP_K` / `RAG_MIN_SCORE` | Retrieval tuning |
-| `KNOWLEDGE_DATA_DIR` | Path to CRI manuals (`./data/cri-manuals`) |
-| `GROQ_API_KEY` / `GROQ_MODEL` | Grounded answer generation |
-| `OPENWEATHER_API_KEY` | Farmer dashboard forecasts |
-| `AWS_REGION` / `AWS_S3_BUCKET` | Optional image storage |
-| `DISEASE_ALERT_RADIUS_KM` | Nearby alert radius when officers verify |
-
-### Frontend (`front_end/.env`)
-
-| Variable | Purpose |
-|----------|---------|
-| `VITE_API_BASE_URL` | Backend base URL (`http://localhost:3000`) |
-| `VITE_GOOGLE_MAPS_KEY` | Optional Maps key |
-
-See [`backend/.env.example`](backend/.env.example) and [`front_end/.env.example`](front_end/.env.example) for the canonical lists.
-
----
-
-## Project Structure
-
-```
-Coco-care/
-├── backend/                     # Express API + PostgreSQL + RAG
-│   ├── src/
-│   │   ├── modules/             # auth, diagnosis, chat, reports, weather,
-│   │   │                        # diseaseMap, farmer, admin, knowledge, notifications
-│   │   ├── services/            # Azure Vision, Gemini, Groq, RAG ingest,
-│   │   │                        # fusion, weather, S3, questionnaires
-│   │   ├── repositories/        # data access
-│   │   ├── middleware/          # auth, roles, validate, errors
-│   │   ├── db/                  # pool, migrate, seed
-│   │   └── config/              # env
-│   ├── sql/                     # numbered migrations
-│   ├── data/cri-manuals/cri/    # CRI topic markdown for RAG
-│   ├── scripts/                 # rag:prepare / ingest / clear helpers
-│   ├── tests/                   # Jest + Supertest
-│   └── docker-compose.yml       # pgvector/pg16 on port 5433
-│
-└── front_end/                   # React + Vite SPA
-    ├── src/
-    │   ├── app/
-    │   │   ├── pages/           # farmer, officer, admin screens
-    │   │   ├── components/      # shared UI + dashboard chrome
-    │   │   ├── layouts/         # officer / admin shells
-    │   │   └── routes.tsx       # role-gated React Router tree
-    │   ├── api/                 # Axios clients
-    │   ├── contexts/            # AuthProvider
-    │   ├── routes/              # ProtectedRoute
-    │   └── styles/
-    └── public/
+```bash
+npm run db:up
 ```
 
----
+This starts the Docker-based PostgreSQL 16 database with pgvector support.
 
-## Available Scripts
+The documented local database port is **5433**.
 
-### Backend (`cd backend`)
+Apply the schema and seed the development data:
 
-| Command | What it does |
-|---------|--------------|
-| `npm run dev` | Start API with hot reload (`tsx watch`) |
-| `npm run build` / `npm start` | Compile TypeScript and run production server |
-| `npm run db:up` | Start PostgreSQL + pgvector container |
-| `npm run db:down` | Stop the database container |
-| `npm run db:reset` | Destroy volume, restart, migrate, seed |
-| `npm run db:migrate` | Apply pending SQL migrations |
-| `npm run db:seed` | Seed users, farm, CRI knowledge, demo reports |
-| `npm run rag:prepare` | Split source manuals into topic files |
-| `npm run rag:ingest` | Embed + store CRI chunks in pgvector |
-| `npm run rag:clear` | Truncate knowledge tables |
-| `npm run test` | Jest + Supertest (needs a running DB) |
+```bash
+npm run db:migrate
+npm run db:seed
+```
 
-### Frontend (`cd front_end`)
+### 4. Start the Backend
 
-| Command | What it does |
-|---------|--------------|
-| `npm run dev` | Vite dev server on `127.0.0.1:5173` |
-| `npm run build` | Production build to `dist/` |
+```bash
+npm run dev
+```
 
----
+Backend API:
 
-## Demo Accounts
+```text
+http://localhost:3000
+```
 
-All seeded demo users share the password: `password`
+### 5. Configure and Start the Frontend
+
+Open a **second terminal** in the repository root.
+
+```bash
+cd front_end
+
+npm install
+
+cp .env.example .env
+```
+
+In `front_end/.env`, configure:
+
+```dotenv
+VITE_API_BASE_URL=http://localhost:3000
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Open the frontend:
+
+```text
+http://127.0.0.1:5173
+```
+
+### Local Services
+
+| Service | Address |
+|---------|---------|
+| Frontend | `http://127.0.0.1:5173` |
+| Backend API | `http://localhost:3000` |
+| PostgreSQL | `localhost:5433` |
+
+### Demo Accounts
+
+The local database seed provides development-only accounts.
 
 | Username | Role |
 |----------|------|
 | `akeel` | Farmer |
-| `officer1` | Officer |
-| `admin` | Admin |
+| `officer1` | Agricultural Officer |
+| `admin` | Administrator |
+
+The documented seed password for these local demo accounts is `password`.
+
+> **Security:** These accounts are for an isolated local development environment. Never expose default demo credentials in a production deployment. Change seeded passwords and use securely managed production accounts.
 
 ---
 
-## RAG Knowledge Base
+## ⚙️ Environment Configuration
 
-Answers are grounded in Coconut Research Institute advisory circulars (fertilizer packages, pests, and diseases), split into topic files under `backend/data/cri-manuals/cri/`, including:
+Environment variable templates are maintained in:
 
-- Nutrient requirements & fertilizer recommendations
-- Organic fertilizers & basal mixtures
-- Bud rot, Weligama leaf wilt
-- Black beetle, red weevil, coconut caterpillar, leaf miner
+- [`backend/.env.example`](backend/.env.example)
+- [`front_end/.env.example`](front_end/.env.example)
 
-**Refresh the knowledge base:**
+### Backend Configuration
+
+| Variable | Purpose |
+|----------|---------|
+| `PORT` | Backend HTTP port, default `3000` |
+| `DATABASE_URL` | PostgreSQL connection string |
+| `JWT_SECRET` | JWT signing secret |
+| `JWT_EXPIRES_IN` | JWT expiration configuration |
+| `FRONTEND_ORIGINS` | Permitted frontend origins for CORS |
+| `FUSION_CONFIDENCE_THRESHOLD` | Confidence threshold for automatic verification |
+| `AZURE_CV_ENDPOINT` | Azure Custom Vision endpoint |
+| `AZURE_CV_KEY` | Azure Custom Vision API key |
+| `AZURE_CV_PREDICTION_URL` | Vision prediction endpoint |
+| `GEMINI_API_KEY` | Gemini embeddings access |
+| `GEMINI_EMBEDDING_MODEL` | Embedding model selection |
+| `GEMINI_EMBEDDING_DIMENSIONS` | Vector dimension configuration |
+| `RAG_TOP_K` | Maximum retrieved knowledge chunks |
+| `RAG_MIN_SCORE` | Minimum retrieval similarity score |
+| `KNOWLEDGE_DATA_DIR` | Directory containing CRI knowledge files |
+| `GROQ_API_KEY` | Groq API credentials |
+| `GROQ_MODEL` | Language model selection |
+| `OPENWEATHER_API_KEY` | Weather service credentials |
+| `AWS_REGION` | Optional AWS region |
+| `AWS_S3_BUCKET` | Optional image storage bucket |
+| `DISEASE_ALERT_RADIUS_KM` | Geographic radius for nearby disease alerts |
+
+### Frontend Configuration
+
+| Variable | Purpose |
+|----------|---------|
+| `VITE_API_BASE_URL` | Backend API base URL |
+| `VITE_GOOGLE_MAPS_KEY` | Optional Google Maps API key |
+
+The backend `.env.example` and frontend `.env.example` files are the authoritative configuration references.
+
+---
+
+## 🧠 RAG Knowledge Base
+
+One of Coco Care's core components is its agricultural knowledge assistant.
+
+Instead of relying exclusively on an LLM's general knowledge, the system retrieves information from **Coconut Research Institute advisory documents** to provide context-grounded responses.
+
+### RAG Workflow
+
+```mermaid
+flowchart TD
+    A[CRI Advisory Documents] --> B[Document Preparation]
+    B --> C[Text Chunking]
+    C --> D[Gemini Embeddings]
+    D --> E[(PostgreSQL + pgvector)]
+
+    U[Farmer Question] --> F[Question Embedding]
+    F --> G[Vector Similarity Search]
+    E --> G
+
+    G --> H[Relevant CRI Document Chunks]
+    H --> I[Groq LLM]
+    U --> I
+
+    I --> J[Grounded Answer + Source References]
+```
+
+### Knowledge Coverage
+
+The knowledge base contains prepared material covering topics such as:
+
+- Coconut nutrient requirements and fertilizer recommendations
+- Organic fertilizers and basal mixtures
+- Bud rot
+- Weligama leaf wilt disease
+- Black beetle and red palm weevil
+- Coconut caterpillar and leaf miner
+
+Source material is organized under:
+
+```text
+backend/data/cri-manuals/cri/
+```
+
+### Refresh the Knowledge Base
+
+From the backend directory:
+
+```bash
+npm run rag:prepare
+```
+
+Prepare the topic files from source manuals when required.
+
+To clear and rebuild the knowledge embeddings:
+
+```bash
+npm run rag:clear
+npm run rag:ingest
+```
+
+The database seed process also supports knowledge ingestion when the knowledge tables are empty.
+
+> The retrieval system is designed to ground generated responses in CRI material. As with any AI-assisted system, critical recommendations should be checked against the original sources and qualified agricultural advice.
+
+---
+
+## 📁 Project Structure
+
+```text
+Coco-care/
+│
+├── backend/
+│   ├── src/
+│   │   ├── modules/         # Feature modules and API endpoints
+│   │   ├── services/        # Business logic and AI integrations
+│   │   ├── repositories/    # Database access layer
+│   │   ├── middleware/      # Auth, validation, and errors
+│   │   ├── db/              # Database connections and setup
+│   │   └── config/          # Environment configuration
+│   │
+│   ├── sql/                 # Database migrations
+│   ├── data/
+│   │   └── cri-manuals/     # CRI knowledge source files
+│   ├── scripts/             # RAG preparation and ingestion
+│   ├── tests/               # Jest and Supertest tests
+│   └── docker-compose.yml   # PostgreSQL and pgvector
+│
+├── front_end/
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── pages/       # Farmer, officer, admin pages
+│   │   │   ├── components/  # Reusable UI components
+│   │   │   ├── layouts/     # Dashboard layouts
+│   │   │   └── routes.tsx   # Role-gated routes
+│   │   ├── api/             # HTTP clients
+│   │   ├── contexts/        # Authentication context
+│   │   ├── routes/          # Protected routes
+│   │   └── styles/          # Application styles
+│   └── public/
+│
+└── README.md
+```
+
+---
+
+## 🧪 Development & Testing
+
+### Backend Scripts
+
+Run these commands inside `backend/`.
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Run the API in development mode |
+| `npm run build` | Compile the TypeScript backend |
+| `npm start` | Start the compiled backend |
+| `npm run db:up` | Start the PostgreSQL container |
+| `npm run db:down` | Stop the database container |
+| `npm run db:reset` | Reset database volume and development data |
+| `npm run db:migrate` | Apply SQL migrations |
+| `npm run db:seed` | Seed development data |
+| `npm run rag:prepare` | Prepare RAG knowledge files |
+| `npm run rag:ingest` | Generate and store embeddings |
+| `npm run rag:clear` | Clear the knowledge tables |
+| `npm run test` | Execute Jest and Supertest tests |
+
+Tests requiring PostgreSQL need a running database and suitable test configuration.
+
+### Frontend Scripts
+
+Run these commands inside `front_end/`.
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Build production frontend assets |
+
+### Testing Approach
+
+The backend uses:
+
+- **Jest** for automated testing.
+- **Supertest** for HTTP API testing.
+- Database-dependent tests for backend functionality where applicable.
+
+Run backend tests with:
 
 ```bash
 cd backend
-npm run rag:prepare          # if regenerating from source manuals
-npm run rag:clear && npm run rag:ingest
+npm run test
 ```
 
-On a fresh `db:seed`, knowledge is ingested automatically when tables are empty.
+---
+
+## 🗺️ Roadmap
+
+Potential future improvements include:
+
+- [ ] Mobile-first Progressive Web App
+- [ ] Offline diagnosis queue with synchronization
+- [ ] Multilingual UI (Sinhala, Tamil, English)
+- [ ] SMS and WhatsApp disease alerts
+- [ ] Yield and treatment outcome tracking
+- [ ] Expanded disease recognition for stem, bud, and fruit images
+- [ ] Officer territory and workload management
+- [ ] Exportable farm-health PDF reports
+
+These are planned improvements, not descriptions of currently implemented features.
 
 ---
 
-## Roadmap
+## 🤝 Contributing
 
-- Mobile-first Progressive Web App for field use
-- Offline-capable diagnosis queue with later sync
-- Multilingual UI (Sinhala / Tamil / English)
-- SMS / WhatsApp disease alerts for low-connectivity farms
-- Yield & treatment outcome tracking after diagnosis
-- Expanded vision models for stem / bud / fruit imagery
-- Officer territory assignment and workload dashboards
-- Exportable farm health PDF reports
+Contributions, suggestions, and bug reports are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+
+3. Implement and test your changes.
+4. Run applicable backend tests.
+
+   ```bash
+   cd backend
+   npm run test
+   ```
+
+5. Commit your changes and push your branch.
+6. Open a Pull Request describing the change.
+
+For UI updates, include screenshots where possible.
+
+For backend changes, preserve the existing layered architecture:
+
+```text
+Routes → Controllers → Services → Repositories
+```
+
+For bug reports or feature requests, use the [GitHub Issues page](https://github.com/pathumsanjaya/Coco-care/issues).
 
 ---
 
-## Contributing
+## 📄 License
 
-Contributions are welcome.
+This repository is currently presented for **educational and demonstration purposes**.
 
-1. Fork and branch from `main`.
-2. Set up backend + frontend with Docker Postgres as above.
-3. Keep the layered API shape: `routes → controller → service → repository`.
-4. Run `npm run test` in `backend/` for API changes.
-5. Open a PR with a clear description and screenshots for UI work.
+No explicit open-source license is included in the supplied repository documentation. Until a license is added, standard copyright restrictions apply.
+
+For reuse or redistribution permissions, contact the project maintainers.
 
 ---
 
-## License
+## 👥 Project Team
 
-This project is for educational and demonstration purposes. Add a preferred license file if you plan to redistribute.
+Coco Care was developed as a collaborative project by a team of five.
+
+**Pathum Sanjaya Bandara**  
+*Backend Developer & Team Coordinator*
+
+Contributions included:
+
+- Developing Node.js, Express, and TypeScript REST APIs
+- Implementing the RAG pipeline with Gemini, PostgreSQL, pgvector, and Groq
+- Integrating Azure Custom Vision for disease classification
+- Writing API tests using Jest and Supertest
+- Coordinating team tasks and development progress
+
+---
 
 <div align="center">
 
-Built to help coconut farmers act before a disease becomes a crisis.
+### 🌴 Healthier Coconut Farms Through Smarter Technology
+
+**Detect Early · Act Confidently · Protect Every Tree**
+
+Built with technology, research, and a commitment to practical agricultural innovation.
 
 </div>
